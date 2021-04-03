@@ -1,14 +1,56 @@
 import os
-import requests  # noqa We are just importing this to prove the dependency installed correctly
+import json
+import re
 
+def get_lines_from_file(path):
+    file = open(path, 'r')
+    lines = file.readlines()
+    if os.environ["INPUT_STRIP"] == "true":
+        lines = [s.strip() for s in lines]
+    if os.environ["INPUT_EMPTY"] == "false":
+        lines = list(filter(None, lines))
+    if os.environ["INPUT_LOWER"] == "true":
+        lines = [s.lower() for s in lines]
+    return lines
+
+def verify_lines(json_input, lines):
+    if isinstance(json_input, list):
+        for json_value in json_input:
+            response = verify_lines(json_value, lines)
+            if response != None:
+                return response
+        return None
+    elif isinstance(json_input, dict):
+        test_lines = lines.copy()
+        for json_value in json_input:
+            response = verify_lines(json_input[json_value], test_lines)
+            if response == None:
+                return None
+            json_input[json_value] = response
+        lines.clear()
+        lines.extend(test_lines)
+        return json_input
+    elif isinstance(json_input, str):
+        if len(lines) > 0 and re.search(json_input, lines[0]):
+            return lines.pop(0)
+        else:
+            return None
+    else:
+        print(f"::set-output name=warning::Not accepted data type: {json_input}")
+        return None
 
 def main():
-    my_input = os.environ["INPUT_MYINPUT"]
-
-    my_output = f"Hello {my_input}"
-
-    print(f"::set-output name=myOutput::{my_output}")
-
+    structure = os.environ["INPUT_STRUCTURE"]
+    json_structure = json.loads(structure)
+    path = os.environ["INPUT_PATH"]
+    
+    lines = get_lines_from_file(path)
+    result = verify_lines(json_structure, lines)
+    print(f"::set-output name=result::{result}")
+    if result:
+        print("::set-output name=inform::Valid file contents")
+    else:
+        print("::set-output name=inform::Incorrect file contents")
 
 if __name__ == "__main__":
     main()

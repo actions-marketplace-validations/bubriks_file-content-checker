@@ -1,13 +1,32 @@
-name: "Python Container Action Template"
-description: "Get started with Python Container actions"
-author: "Jacob Tomlinson"
+name: "File content checker"
+description: "Uses json input to validate lines of specific file"
+author: "Ralfs Zangis"
 inputs:
-  myInput:
-    description: "Input to use"
-    default: "world"
+  path:
+    description: "Path to the file to be verified"
+    required: true
+  structure:
+    description: "Expected file content structure"
+    required: true
+  strip:
+    description: "Remove spaces at the beginning and at the end of the line read from the file path"
+    required: false
+    default: true
+  empty:
+    description: "Use empty lines"
+    required: false
+    default: false
+  lower:
+    description: "Text from file to lowercase"
+    required: false
+    default: true
 outputs:
-  myOutput:
-    description: "Output from the action"
+  warning:
+    description: "Problem encountered"
+  result:
+    description: "Result of the execution"
+  inform:
+    description: "Informative message"
 runs:
   using: "docker"
   image: "Dockerfile"
