@@ -45,7 +45,7 @@ def verify_lines(json_input, lines):
 
 def main():
     structure = os.environ["INPUT_STRUCTURE"]
-    structure = r"" + structure.replace("\\","\\\\")
+    structure = r"" + structure.replace("\\", "\\\\")
     json_structure = json.loads(structure)
     path = os.environ["INPUT_PATH"]
 

@@ -9,7 +9,7 @@ jobs:
         id: selftest
         uses: bubriks/file-content-checker@master
         with:
-          structure: "{
+          structure: > {
                 "Title": [
                     "^# presentation:.*$",
                     "^# essay:.*$",
@@ -52,7 +52,7 @@ jobs:
                     ]
                 },
                 "ProposalSection": "^## proposal$"
-            }"
+            }
           path: "tests/README.md"
       - name: Check outputs and modified files
         run: |
