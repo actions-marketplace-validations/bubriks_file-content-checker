@@ -9,51 +9,52 @@ jobs:
         id: selftest
         uses: bubriks/file-content-checker@master
         with:
-          structure: "{
-                "Title": [
-                    "^# presentation:.*$",
-                    "^# essay:.*$",
-                    "^# demo:.*$",
-                    "^# open-source:.*$",
-                    "^# executable tutorial:.*$",
-                    "^# course automation:.*$",
-                    "^# feedback:.*$"
-                ],
-                "MemberSection": {
-                    "SectionTitle": "^## members$",
-                    "MemberOne": [
-                        {
-                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \\([a-z]+@kth.se\\)$",
-                            "GitHub": "^github: https://github.com/[a-z]+$"
-                        },
-                        {
-                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \\([a-z]+@kth.se\\)$"
-                        }
+            structure: >
+                {
+                    "Title": [
+                        "^# presentation:.*$",
+                        "^# essay:.*$",
+                        "^# demo:.*$",
+                        "^# open-source:.*$",
+                        "^# executable tutorial:.*$",
+                        "^# course automation:.*$",
+                        "^# feedback:.*$"
                     ],
-                    "MemberTwo": [
-                        {
-                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \\([a-z]+@kth.se\\)$",
-                            "GitHub": "^github: https://github.com/[a-z]+$"
-                        },
-                        {
-                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \\([a-z]+@kth.se\\)$"
-                        },
-                        {}
-                    ],
-                    "MemberThree": [
-                        {
-                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \\([a-z]+@kth.se\\)$",
-                            "GitHub": "^github: https://github.com/[a-z]+$"
-                        },
-                        {
-                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \\([a-z]+@kth.se\\)$"
-                        },
-                        {}
-                    ]
-                },
-                "ProposalSection": "^## proposal$"
-            }"
-          path: "tests/README.md"
+                    "MemberSection": {
+                        "SectionTitle": "^## members$",
+                        "MemberOne": [
+                            {
+                                "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
+                                "GitHub": "^github: https://github.com/[a-z]+$"
+                            },
+                            {
+                                "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
+                            }
+                        ],
+                        "MemberTwo": [
+                            {
+                                "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
+                                "GitHub": "^github: https://github.com/[a-z]+$"
+                            },
+                            {
+                                "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
+                            },
+                            {}
+                        ],
+                        "MemberThree": [
+                            {
+                                "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
+                                "GitHub": "^github: https://github.com/[a-z]+$"
+                            },
+                            {
+                                "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
+                            },
+                            {}
+                        ]
+                    },
+                    "ProposalSection": "^## proposal$"
+                }
+            path: "tests/README.md"
       - name: Check outputs and modified files
         run: |
           test "${{ steps.selftest.outputs.result }}" != "1"
