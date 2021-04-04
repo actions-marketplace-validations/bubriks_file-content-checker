@@ -1,6 +1,8 @@
 import os
+import sys
 import json
 import re
+
 
 def get_lines_from_file(path):
     file = open(path, 'r')
@@ -13,18 +15,19 @@ def get_lines_from_file(path):
         lines = [s.lower() for s in lines]
     return lines
 
+
 def verify_lines(json_input, lines):
     if isinstance(json_input, list):
         for json_value in json_input:
             response = verify_lines(json_value, lines)
-            if response != None:
+            if response is not None:
                 return response
         return None
     elif isinstance(json_input, dict):
         test_lines = lines.copy()
         for json_value in json_input:
             response = verify_lines(json_input[json_value], test_lines)
-            if response == None:
+            if response is None:
                 return None
             json_input[json_value] = response
         lines.clear()
@@ -36,21 +39,26 @@ def verify_lines(json_input, lines):
         else:
             return None
     else:
-        print(f"::set-output name=warning::Not accepted data type: {json_input}")
+        print(f"::set-output name=warning::incorrect data type: {json_input}")
         return None
+
 
 def main():
     structure = os.environ["INPUT_STRUCTURE"]
+    structure = r"" + structure.replace("\\","\\\\")
     json_structure = json.loads(structure)
     path = os.environ["INPUT_PATH"]
-    
+
     lines = get_lines_from_file(path)
     result = verify_lines(json_structure, lines)
-    print(f"::set-output name=result::{result}")
     if result:
         print("::set-output name=inform::Valid file contents")
+        print(f"::set-output name=result::{result}")
+        sys.exit(0)
     else:
         print("::set-output name=inform::Incorrect file contents")
+        sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
