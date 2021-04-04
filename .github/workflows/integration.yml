@@ -9,7 +9,7 @@ jobs:
         id: selftest
         uses: bubriks/file-content-checker@master
         with:
-          structure: > {
+          structure: "{
                 "Title": [
                     "^# presentation:.*$",
                     "^# essay:.*$",
@@ -23,36 +23,36 @@ jobs:
                     "SectionTitle": "^## members$",
                     "MemberOne": [
                         {
-                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
+                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \\([a-z]+@kth.se\\)$",
                             "GitHub": "^github: https://github.com/[a-z]+$"
                         },
                         {
-                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
+                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \\([a-z]+@kth.se\\)$"
                         }
                     ],
                     "MemberTwo": [
                         {
-                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
+                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \\([a-z]+@kth.se\\)$",
                             "GitHub": "^github: https://github.com/[a-z]+$"
                         },
                         {
-                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
+                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \\([a-z]+@kth.se\\)$"
                         },
                         {}
                     ],
                     "MemberThree": [
                         {
-                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
+                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \\([a-z]+@kth.se\\)$",
                             "GitHub": "^github: https://github.com/[a-z]+$"
                         },
                         {
-                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
+                            "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \\([a-z]+@kth.se\\)$"
                         },
                         {}
                     ]
                 },
                 "ProposalSection": "^## proposal$"
-            }
+            }"
           path: "tests/README.md"
       - name: Check outputs and modified files
         run: |
