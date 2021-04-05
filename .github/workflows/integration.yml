@@ -77,8 +77,7 @@ jobs:
             path: "tests/README.md"
 
         - id: readfile
-          run: |
-            echo "::set-output name=json::cat ${ env.json_file }"
+          run: echo ::set-output name=json::$(cat ${ env.json_file })
 	
         - name: Check content 1
           uses: bubriks/file-content-checker@master
