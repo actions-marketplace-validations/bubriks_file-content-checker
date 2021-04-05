@@ -90,9 +90,9 @@ Response in the case of lists first element matching.
 
 ```json
 {
-    'test': {
-        'Name&Email': 'foo bar (bar@gmail.com)', 
-        'GitHub': 'github: https://github.com/bar'
+    "test": {
+        "nameAndEmail": "foo bar (bar@gmail.com)", 
+        "gitHub": "github: https://github.com/bar"
     }
 }
 ```
