@@ -65,34 +65,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-	
+
     - name: Check content
       uses: bubriks/file-content-checker@master
       with:
         path: path/to/my/file/README.md
 		structure: >
-			{
-				"test": [
-					{
-						"nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@gmail.com\)$",
-						"gitHub": "^github: https://github.com/[a-z]+$"
-					},
-					{
-						"nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@gmail.com\)$"
-					},
-					{}
-				]
-			}
+            {
+                "test": [
+                    {
+                        "nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@gmail.com\)$",
+                        "gitHub": "^github: https://github.com/[a-z]+$"
+                    },
+                    {
+                        "nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@gmail.com\)$"
+                    },
+                    {}
+                ]
+            }
 ```
 
 Response in the case of lists first element matching.
 
+
 ```json
 {
-	'test': {
-		'Name&Email': 'foo bar (bar@gmail.com)', 
-		'GitHub': 'github: https://github.com/bar'
-	}
+    'test': {
+        'Name&Email': 'foo bar (bar@gmail.com)', 
+        'GitHub': 'github: https://github.com/bar'
+    }
 }
 ```
 
@@ -108,8 +109,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-	
-	- id: readfile
+
+    - id: readfile
       run: echo ::set-output name=json::$(cat path/to/my/json/test.json)
 
     - name: Check content
