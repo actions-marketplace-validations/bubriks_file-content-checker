@@ -13,7 +13,7 @@ The verification of file contents is done using JSON schema, with possible usage
 - List- At least one of the list elements must match (takes the first match).
 - String- Regex value used for line content verification.
 
-As a result of successful execution, a modified version of the provided JSON (containing retrieved data) is returned.
+As a result of successful execution, a modified version of the provided JSON (containing matched data) is returned.
 
 ### Example workflow
 
