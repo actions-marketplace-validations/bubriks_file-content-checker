@@ -13,7 +13,7 @@ inputs:
     required: false
     default: true
   empty:
-    description: "Use empty lines"
+    description: "Use empty lines for comparison"
     required: false
     default: false
   lower:
@@ -22,7 +22,7 @@ inputs:
     default: true
 outputs:
   warning:
-    description: "Problem encountered"
+    description: "Problem encountered during run"
   result:
     description: "Result of the execution"
   inform:

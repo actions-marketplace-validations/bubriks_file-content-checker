@@ -1,0 +1,44 @@
+{
+	"title": [
+		"^# presentation:.*$",
+		"^# essay:.*$",
+		"^# demo:.*$",
+		"^# open-source:.*$",
+		"^# executable tutorial:.*$",
+		"^# course automation:.*$",
+		"^# feedback:.*$"
+	],
+	"member": {
+		"title": "^## members$",
+		"memberOne": [
+			{
+				"nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
+				"gitHub": "^github: https://github.com/[a-z]+$"
+			},
+			{
+				"nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
+			}
+		],
+		"memberTwo": [
+			{
+				"nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
+				"gitHub": "^github: https://github.com/[a-z]+$"
+			},
+			{
+				"nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
+			},
+			{}
+		],
+		"memberThree": [
+			{
+				"nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
+				"gitHub": "^github: https://github.com/[a-z]+$"
+			},
+			{
+				"nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
+			},
+			{}
+		]
+	},
+	"proposal": "^## proposal$"
+}

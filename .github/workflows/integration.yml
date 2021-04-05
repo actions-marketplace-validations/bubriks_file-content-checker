@@ -3,15 +3,20 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    env:
+      json_file: tests/test.json
+     
     steps:
       - uses: actions/checkout@master
-      - name: Self test
-        id: selftest
+      
+      - name: Match test
+        id: matchtest
         uses: bubriks/file-content-checker@master
         with:
             structure: >
                 {
-                    "Title": [
+                    "title": [
                         "^# presentation:.*$",
                         "^# essay:.*$",
                         "^# demo:.*$",
@@ -20,41 +25,63 @@ jobs:
                         "^# course automation:.*$",
                         "^# feedback:.*$"
                     ],
-                    "MemberSection": {
-                        "SectionTitle": "^## members$",
-                        "MemberOne": [
+                    "member": {
+                        "title": "^## members$",
+                        "memberOne": [
                             {
-                                "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
-                                "GitHub": "^github: https://github.com/[a-z]+$"
+                                "nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
+                                "gitHub": "^github: https://github.com/[a-z]+$"
                             },
                             {
-                                "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
+                                "nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
                             }
                         ],
-                        "MemberTwo": [
+                        "memberTwo": [
                             {
-                                "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
-                                "GitHub": "^github: https://github.com/[a-z]+$"
+                                "nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
+                                "gitHub": "^github: https://github.com/[a-z]+$"
                             },
                             {
-                                "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
+                                "nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
                             },
                             {}
                         ],
-                        "MemberThree": [
+                        "memberThree": [
                             {
-                                "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
-                                "GitHub": "^github: https://github.com/[a-z]+$"
+                                "nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$",
+                                "gitHub": "^github: https://github.com/[a-z]+$"
                             },
                             {
-                                "Name&Email": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
+                                "nameAndEmail": "^[a-z]+( [a-z]+)* [a-z]+ \([a-z]+@kth.se\)$"
                             },
                             {}
                         ]
                     },
-                    "ProposalSection": "^## proposal$"
+                    "proposal": "^## proposal$"
                 }
             path: "tests/README.md"
-      - name: Check outputs and modified files
+      - name: Check match test result
         run: |
-          test "${{ steps.selftest.outputs.result }}" != "1"
+          test "${{ steps.matchtest.outputs.result }}" != "1"
+      
+      - name: Wrong contents test
+        id: wrongcontentstest
+        uses: bubriks/file-content-checker@master
+        with:
+            structure: >
+                {
+                    "title": [
+                        "^$"
+                    ]
+                }
+            path: "tests/README.md"
+
+        - id: readfile
+          run: |
+            echo "::set-output name=json::cat ${ env.json_file }"
+	
+        - name: Check content 1
+          uses: bubriks/file-content-checker@master
+          with:
+            path: "tests/README.md"
+            structure: ${ steps.readfile.outputs.json }
