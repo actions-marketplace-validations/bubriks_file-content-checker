@@ -9,9 +9,9 @@ This action will validate the contents of your files using a JSON containing reg
 
 The verification of file contents is done using JSON schema, with possible usage of three value types: dictionary, list, and string.
 
-Dictionary- All contents within the dictionary must be satisfied.
-List- At least one of the list elements must match (takes the first match).
-String- Regex value used for line content verification.
+- Dictionary- All contents within the dictionary must be satisfied.
+- List- At least one of the list elements must match (takes the first match).
+- String- Regex value used for line content verification.
 
 As a result of successful execution, a modified version of the provided JSON (containing retrieved data) is returned.
 
