@@ -5,11 +5,11 @@ jobs:
     runs-on: ubuntu-latest
      
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       
       - name: Match test
         id: matchtest
-        uses: bubriks/file-content-checker@master
+        uses: bubriks/file-content-checker@0.1.0
         with:
             structure: >
                 {
@@ -65,7 +65,7 @@ jobs:
         run: echo ::set-output name=json::$(cat tests/test.json)
 
       - name: Check content 1
-        uses: bubriks/file-content-checker@master
+        uses: bubriks/file-content-checker@0.1.0
         with:
           path: tests/README.md
           structure: ${{ steps.readfile.outputs.json }}

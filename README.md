@@ -1,19 +1,19 @@
-# YAML linter Action
+# File content checker
 
 [![Actions Status](https://github.com/bubriks/file-content-checker/workflows/Lint/badge.svg)](https://github.com/bubriks/file-content-checker/actions)
 [![Actions Status](https://github.com/bubriks/file-content-checker/workflows/Integration%20Test/badge.svg)](https://github.com/bubriks/file-content-checker/actions)
 
-This action will validate the contents of your files using json file containing regex string values. It sets the status of PR to failure in case of no match.
+This action will validate the contents of your files using a JSON file containing regex string values. It sets the status of PR to failure in case of no match.
 
 ## Usage
 
-The verification of file contents is done using json schema, with possible usage of three value types: dictionary, list and string.
+The verification of file contents is done using JSON schema, with possible usage of three value types: dictionary, list, and string.
 
-Dictionary- All contents within dictionary must be sattisfied.
-List- Atleast one of the lists elements must match (takes the first match).
+Dictionary- All contents within the dictionary must be satisfied.
+List- At least one of the list elements must match (takes the first match).
 String- Regex value used for line content verification.
 
-As a result of successfull execution, a moddified version of the provided json (containing retrieved data) is returned.
+As a result of successful execution, a modified version of the provided JSON (containing retrieved data) is returned.
 
 ### Example workflow
 
@@ -38,8 +38,8 @@ jobs:
 | Input                                             | Description                                        |
 |------------------------------------------------------|-----------------------------------------------|
 | `path`  | Path to the file to be verified.    |
-| `structure` | Expected file content structure (json string).    |
-| `strip` _(optional)_  | Remove spaces at the beginning and at the end of the line read from the file path.    |
+| `structure` | Expected file content structure (JSON string).    |
+| `strip` _(optional)_  | Remove spaces at the beginning and the end of the line read from the file path.    |
 | `empty` _(optional)_  | Use empty lines for comparison.    |
 | `lower` _(optional)_  | Text from file to lowercase.    |
 
@@ -47,15 +47,15 @@ jobs:
 
 | Output                                             | Description                                        |
 |------------------------------------------------------|-----------------------------------------------|
-| `warnings`  | Problem encountered during run.    |
-| `result`  | Result of the execution (json file with regex expression replaced by the matched line).    |
+| `warnings`  | Problem encountered during the run.    |
+| `result`  | Result of the execution (JSON file with regex expression replaced by the matched line).    |
 | `inform`  | Informative message.    |
 
 ## Examples
 
-### Running using json string
+### Running using JSON string
 
-Here is an example of yaml containing json.
+Here is an example of YAML containing JSON.
 
 ```yaml
 name: My Workflow
@@ -85,7 +85,7 @@ jobs:
             }
 ```
 
-Response in the case of lists first element matching.
+Example response in the case of lists first element matching.
 
 
 ```json
@@ -97,9 +97,9 @@ Response in the case of lists first element matching.
 }
 ```
 
-### Running using json file
+### Running using JSON file
 
-Here is an example of yaml using json file.
+Here is an example of YAML using JSON file.
 
 ```yaml
 name: My Workflow
