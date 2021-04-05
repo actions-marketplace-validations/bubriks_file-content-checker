@@ -3,7 +3,7 @@
 [![Actions Status](https://github.com/bubriks/file-content-checker/workflows/Lint/badge.svg)](https://github.com/bubriks/file-content-checker/actions)
 [![Actions Status](https://github.com/bubriks/file-content-checker/workflows/Integration%20Test/badge.svg)](https://github.com/bubriks/file-content-checker/actions)
 
-This action will validate the contents of your files using a JSON file containing regex string values. It sets the status of PR to failure in case of no match.
+This action will validate the contents of your files using a JSON containing regex string values. It sets the status of PR to failure in case of no match.
 
 ## Usage
 
@@ -24,10 +24,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
 
     - name: Check content
-      uses: bubriks/file-content-checker@master
+      uses: bubriks/file-content-checker@0.1.0
       with:
         path: path/to/my/file/README.md
         structure: json
@@ -64,10 +64,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
 
     - name: Check content
-      uses: bubriks/file-content-checker@master
+      uses: bubriks/file-content-checker@0.1.0
       with:
         path: path/to/my/file/README.md
         structure: >
@@ -108,13 +108,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
 
     - id: readfile
       run: echo ::set-output name=json::$(cat path/to/my/json/test.json)
 
     - name: Check content
-      uses: bubriks/file-content-checker@master
+      uses: bubriks/file-content-checker@0.1.0
       with:
         path: path/to/my/file/README.md
         structure: ${{ steps.readfile.outputs.json }}

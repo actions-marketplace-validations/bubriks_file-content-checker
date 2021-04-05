@@ -9,7 +9,7 @@ jobs:
       
       - name: Match test
         id: matchtest
-        uses: bubriks/file-content-checker@0.1.0
+        uses: bubriks/file-content-checker@master
         with:
             structure: >
                 {
@@ -65,7 +65,7 @@ jobs:
         run: echo ::set-output name=json::$(cat tests/test.json)
 
       - name: Check content 1
-        uses: bubriks/file-content-checker@0.1.0
+        uses: bubriks/file-content-checker@master
         with:
           path: tests/README.md
           structure: ${{ steps.readfile.outputs.json }}
