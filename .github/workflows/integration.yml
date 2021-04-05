@@ -76,11 +76,11 @@ jobs:
                 }
             path: "tests/README.md"
 
-        - id: readfile
-          run: echo ::set-output name=json::$(cat ${ env.json_file })
+      - id: readfile
+        run: echo ::set-output name=json::$(cat ${ env.json_file })
 	
-        - name: Check content 1
-          uses: bubriks/file-content-checker@master
-          with:
-            path: "tests/README.md"
-            structure: ${ steps.readfile.outputs.json }
+      - name: Check content 1
+        uses: bubriks/file-content-checker@master
+        with:
+          path: "tests/README.md"
+          structure: ${ steps.readfile.outputs.json }
