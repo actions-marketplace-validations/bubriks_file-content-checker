@@ -25,12 +25,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-	
+
     - name: Check content
       uses: bubriks/file-content-checker@master
       with:
         path: path/to/my/file/README.md
-		structure: json
+        structure: json
 ```
 
 ### Inputs
@@ -70,7 +70,7 @@ jobs:
       uses: bubriks/file-content-checker@master
       with:
         path: path/to/my/file/README.md
-		structure: >
+        structure: >
             {
                 "test": [
                     {
