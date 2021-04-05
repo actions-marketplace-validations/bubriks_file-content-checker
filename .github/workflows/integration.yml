@@ -68,4 +68,4 @@ jobs:
         uses: bubriks/file-content-checker@master
         with:
           path: "tests/README.md"
-          structure: ${ steps.readfile.outputs.json }
+          structure: ${{ steps.readfile.outputs.json }}
