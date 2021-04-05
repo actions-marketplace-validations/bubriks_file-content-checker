@@ -85,7 +85,7 @@ jobs:
 			}
 ```
 
-Response in case of the lists first element match.
+Response in the case of lists first element matching.
 
 ```json
 {
@@ -106,20 +106,15 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    env:
-      json_file: path/to/my/json/test.json
-	
     steps:
     - uses: actions/checkout@master
 	
 	- id: readfile
-	  run: |
-		echo "::set-output name=json::cat ${ env.json_file }"
-	
+      run: echo ::set-output name=json::$(cat path/to/my/json/test.json)
+
     - name: Check content
       uses: bubriks/file-content-checker@master
       with:
         path: path/to/my/file/README.md
-		structure: ${ steps.readfile.outputs.json }
+        structure: ${{ steps.readfile.outputs.json }}
 ```
