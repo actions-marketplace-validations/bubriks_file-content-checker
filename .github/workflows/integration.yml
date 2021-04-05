@@ -60,18 +60,6 @@ jobs:
       - name: Check match test result
         run: |
           test "${{ steps.matchtest.outputs.result }}" != "1"
-      
-      - name: Wrong contents test
-        id: wrongcontentstest
-        uses: bubriks/file-content-checker@master
-        with:
-            structure: >
-                {
-                    "title": [
-                        "^$"
-                    ]
-                }
-            path: "tests/README.md"
 
       - id: readfile
         run: echo ::set-output name=json::$(cat tests/test.json)
