@@ -53,7 +53,7 @@ def main():
     result = verify_lines(json_structure, lines)
     if result:
         print("::set-output name=inform::Valid file contents")
-        print(f"::set-output name=result::{result}")
+        print(f"::set-output name=result::{json.dumps(result)}")
         sys.exit(0)
     else:
         print("::set-output name=inform::Incorrect file contents")
