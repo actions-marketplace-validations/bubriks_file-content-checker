@@ -59,7 +59,7 @@ jobs:
             path: tests/README.md
       - name: Check match test result
         run: |
-          test "${{ steps.matchtest.outputs.result }}" != "1"
+          test ${{ steps.matchtest.outputs.result }} != "1"
 
       - id: readfile
         run: echo ::set-output name=json::$(cat tests/test.json)
