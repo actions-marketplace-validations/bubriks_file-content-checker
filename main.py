@@ -50,10 +50,11 @@ def main():
     path = os.environ["INPUT_PATH"]
 
     lines = get_lines_from_file(path)
-    result = verify_lines(json_structure, lines)
+    json_output = verify_lines(json_structure, lines)
+    result = json.dumps(json_output)
     if result:
         print("::set-output name=inform::Valid file contents")
-        print(f"::set-output name=result::{json.dumps(result)}")
+        print(f"::set-output name=result::{result}")
         sys.exit(0)
     else:
         print("::set-output name=inform::Incorrect file contents")
