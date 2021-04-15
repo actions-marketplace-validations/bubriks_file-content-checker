@@ -51,8 +51,8 @@ def main():
 
     lines = get_lines_from_file(path)
     json_output = verify_lines(json_structure, lines)
-    result = json.dumps(json_output)
-    if result:
+    if json_output is not None:
+        result = json.dumps(json_output)
         print("::set-output name=inform::Valid file contents")
         print(f"::set-output name=result::{result}")
         sys.exit(0)
