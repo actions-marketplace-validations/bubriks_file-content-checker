@@ -27,7 +27,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Check content
-      uses: bubriks/file-content-checker@0.1.2
+      uses: bubriks/file-content-checker@0.1.3
       with:
         path: path/to/my/file/README.md
         structure: json
@@ -67,7 +67,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Check content
-      uses: bubriks/file-content-checker@0.1.2
+      uses: bubriks/file-content-checker@0.1.3
       with:
         path: path/to/my/file/README.md
         structure: >
@@ -114,7 +114,7 @@ jobs:
       run: echo ::set-output name=json::$(cat path/to/my/json/test.json)
 
     - name: Check content
-      uses: bubriks/file-content-checker@0.1.2
+      uses: bubriks/file-content-checker@0.1.3
       with:
         path: path/to/my/file/README.md
         structure: ${{ steps.readfile.outputs.json }}
