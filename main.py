@@ -55,10 +55,10 @@ def main():
         result = json.dumps(json_output)
         print("::set-output name=inform::Valid file contents")
         print(f"::set-output name=result::{result}")
+        print("Match!")
         sys.exit(0)
     else:
-        print("::set-output name=inform::Incorrect file contents")
-        sys.exit(1)
+        sys.exit("Contents don't match the provided structure")
 
 
 if __name__ == "__main__":
